@@ -63,4 +63,32 @@ describe("SpreadsheetApp", () => {
     expect(formulaInput).toHaveValue("=");
     expect(formulaInput).not.toHaveValue("#ERROR!");
   });
+
+  it("applies different display classes for text, numbers, formulas, and errors", async () => {
+    const user = userEvent.setup();
+    render(<SpreadsheetApp />);
+
+    await user.click(screen.getByTestId("cell-A1"));
+    await user.keyboard("{Enter}");
+    await user.type(screen.getByTestId("editor-A1"), "hello{Tab}");
+
+    await user.click(screen.getByTestId("cell-B1"));
+    await user.keyboard("{Enter}");
+    await user.type(screen.getByTestId("editor-B1"), "123{Tab}");
+
+    await user.click(screen.getByTestId("cell-C1"));
+    await user.keyboard("{Enter}");
+    await user.type(screen.getByTestId("editor-C1"), "=B1*2{Tab}");
+
+    await user.click(screen.getByTestId("cell-D1"));
+    await user.keyboard("{Enter}");
+    await user.type(screen.getByTestId("editor-D1"), "=1/0{Tab}");
+
+    expect(screen.getByTestId("cell-A1").className).toContain("text");
+    expect(screen.getByTestId("cell-B1").className).toContain("number");
+    expect(screen.getByTestId("cell-C1").className).toContain("formula");
+    expect(screen.getByTestId("cell-D1").className).toContain("error");
+    expect(screen.getByTestId("cell-C1")).toHaveTextContent("246");
+    expect(screen.getByTestId("cell-D1")).toHaveTextContent("#ERROR!");
+  });
 });
