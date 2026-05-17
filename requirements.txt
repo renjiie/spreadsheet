@@ -1,0 +1,49 @@
+Build interactive spreadsheet with features similar to google sheets or excel
+1) Cell editing
+2) Formula evaluation
+3) Dependency tracking
+5) Keyboard driven navigation
+Clear seperation between data model (spreadsheet engine -> data model, formula parser, dependency graph, evaluator, cycle detection) and the UI layer (rendering and interaction)
+Focus on complex state management, efficient rendering and extensible architecture
+Functional Requirements:
+1) Grid rendering
+    Spreadsheet grid of configurable size with min 26 cols x 100 rows
+    Col Headers should be A,B,C... Z 
+    Row headers 1, 2, 3, ...
+    Only visible cells should be rendered -> use react window for virtualization
+    and smooth scroll 
+2) Cell editing
+   Clicking a cell just selects it
+   Dbl click or "Enter" goes to edit mode
+   Commit the values on "Enter" or Tab or clicking away from the cell
+   Pressing "Escape" discard the current edit
+3) Formula Support
+    Cell references (=A1, =B3)
+    Basic arithmetic (=A1+B2*C3)
+    Sum function (=SUM(A1:A5))
+    Average function (=AVERAGE(A1:A5))
+    These are mandatory but can add other functions maybe 2 or 3 more for enrichment
+4) Dependency Tracking
+    When a cell value changes, all dependent cells should update automatically.
+    Cycle detection and error handling for circular dependencies as "CIRCULAR REF" in the cell
+    Dependency graph must update correctly when formulae are added, deleted or edited
+5) Keyboard navigation
+    Use keyboard to navigate between cells
+    Use enter to commit the values and move to next row, Shift+Enter to move to previous row
+    Use tab to commit the values and move to next column, Shift+Tab to move to previous column
+    The active cell must always be visible (auto-scroll to view)
+6) Cell formatting
+    Display differentiation between text values, numbers and formulas and errors
+    The formula bar should display the actual formula when a cell containing formula is selected
+    and the value of the cell in the grid
+    Error cells like division by zero, invalid references, circular references, etc. should be displayed as "#ERROR!" in the cell and formula bar 
+7) Performance
+    Grid should handle 26 x 100 cells without visible lag during scroll or edit.
+    Rerenders after cell edits should only affect the dependent cells in the grid not the entire grid
+
+Tech stack: React + Vite + TypeScript
+React window for virtualization
+React testing library for unit and integration tests with test coverage documentation
+Make a modularized documentation with different sections and reference of all documents with proper heading and subheadings
+Document how to run the application, architecture overview (engine vs UI), formula parsing and evaluation strategy, dependency graph implementation and cycle detection, performance optimizations made.
+    

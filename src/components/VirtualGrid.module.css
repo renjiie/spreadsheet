@@ -1,0 +1,32 @@
+.gridWrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-cell);
+  overflow: hidden;
+}
+
+.grid {
+  outline: none;
+}
+
+.corner,
+.columnHeader,
+.rowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-header);
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.rowHeader {
+  justify-content: flex-end;
+  padding-right: 10px;
+}

@@ -1,0 +1,65 @@
+.cell {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-right: 1px solid var(--color-grid-line);
+  border-bottom: 1px solid var(--color-grid-line);
+  background: var(--color-cell);
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1;
+  outline: none;
+  overflow: hidden;
+}
+
+.value {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--color-muted);
+}
+
+.text .value {
+  text-align: left;
+}
+
+.number .value,
+.formula .value {
+  text-align: right;
+}
+
+.formula {
+  background: var(--color-formula-bg);
+}
+
+.error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  font-weight: 700;
+}
+
+.active {
+  box-shadow: inset 0 0 0 2px var(--color-active);
+  position: relative;
+  z-index: 1;
+}
+
+.editing {
+  box-shadow: inset 0 0 0 2px var(--color-editing);
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--color-cell);
+  color: var(--color-text);
+  font: inherit;
+  outline: none;
+  padding: 0 7px;
+}

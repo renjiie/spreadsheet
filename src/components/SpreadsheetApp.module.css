@@ -1,0 +1,26 @@
+.shell {
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--color-app-bg);
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 auto 14px;
+  max-width: 100%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
